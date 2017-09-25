@@ -1,0 +1,12 @@
+/Users/stefano/privatecode/notizenapp/notizenapp/bin/Debug/netcoreapp2.0/libe_sqlite3.dylib
+/Users/stefano/privatecode/notizenapp/notizenapp/bin/Debug/netcoreapp2.0/notizenapp.deps.json
+/Users/stefano/privatecode/notizenapp/notizenapp/bin/Debug/netcoreapp2.0/notizenapp.runtimeconfig.json
+/Users/stefano/privatecode/notizenapp/notizenapp/bin/Debug/netcoreapp2.0/notizenapp.runtimeconfig.dev.json
+/Users/stefano/privatecode/notizenapp/notizenapp/bin/Debug/netcoreapp2.0/notizenapp.dll
+/Users/stefano/privatecode/notizenapp/notizenapp/bin/Debug/netcoreapp2.0/notizenapp.pdb
+/Users/stefano/privatecode/notizenapp/notizenapp/obj/Debug/netcoreapp2.0/notizenapp.csprojResolveAssemblyReference.cache
+/Users/stefano/privatecode/notizenapp/notizenapp/obj/Debug/netcoreapp2.0/notizenapp.csproj.CoreCompileInputs.cache
+/Users/stefano/privatecode/notizenapp/notizenapp/obj/Debug/netcoreapp2.0/notizenapp.AssemblyInfoInputs.cache
+/Users/stefano/privatecode/notizenapp/notizenapp/obj/Debug/netcoreapp2.0/notizenapp.AssemblyInfo.cs
+/Users/stefano/privatecode/notizenapp/notizenapp/obj/Debug/netcoreapp2.0/notizenapp.dll
+/Users/stefano/privatecode/notizenapp/notizenapp/obj/Debug/netcoreapp2.0/notizenapp.pdb
