@@ -1,6 +1,13 @@
 ﻿<Properties StartupConfiguration="{19B6FAE7-382B-4FAE-89F5-9376B1ADD95A}|Default">
   <MonoDevelop.Ide.ItemProperties.notizenapp PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench />
+  <MonoDevelop.Ide.Workbench ActiveDocument="notizenapp/Models/notizenappContext.cs">
+    <Files>
+      <File FileName="notizenapp/Models/ErrorViewModel.cs" Line="1" Column="1" />
+      <File FileName="notizenapp/Program.cs" Line="1" Column="1" />
+      <File FileName="notizenapp/Startup.cs" Line="21" Column="9" />
+      <File FileName="notizenapp/Models/notizenappContext.cs" Line="3" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
