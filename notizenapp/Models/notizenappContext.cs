@@ -12,5 +12,5 @@ namespace notizenapp.Models
 		}
 
         public DbSet<notizenapp.Models.Note> Note { get; set; }
-}
+    }
 }
