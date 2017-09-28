@@ -32,7 +32,7 @@ namespace notizenapp.Models
 						Title = "Not Important",
 						Text = "This is a description",
 						Importance = 0,
-						FinishDate = DateTime.Parse("2017-10-6")
+						FinishDate = DateTime.Parse("2017-11-9")
 					}
                     
                 );

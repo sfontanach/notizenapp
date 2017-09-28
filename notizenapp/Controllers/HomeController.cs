@@ -32,23 +32,62 @@ namespace notizenapp.Controllers
 			return View(notesVM);
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
 
-            return View();
-        }
+		// GET: Notes/Edit/5
+		public async Task<IActionResult> Edit(int? id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
 
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+            var note = await _context.Note.SingleOrDefaultAsync(m => m.ID == id);
+			if (note == null)
+			{
+				return NotFound();
+			}
+			return View(note);
+		}
 
-            return View();
-        }
+		// POST: Notes/Edit/5
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Text,Importance,FinishDate")] Note note)
+		{
+			if (id != note.ID)
+			{
+				return NotFound();
+			}
 
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					_context.Update(note);
+					await _context.SaveChangesAsync();
+				}
+				catch (DbUpdateConcurrencyException)
+				{
+					if (!NoteExists(note.ID))
+					{
+						return NotFound();
+					}
+					else
+					{
+						throw;
+					}
+				}
+				return RedirectToAction(nameof(Index));
+			}
+			return View(note);
+		}
+
+		private bool NoteExists(int id)
+		{
+			return _context.Note.Any(e => e.ID == id);
+		}
+
     }
 }
