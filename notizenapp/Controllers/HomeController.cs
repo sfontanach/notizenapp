@@ -33,6 +33,29 @@ namespace notizenapp.Controllers
         }
 
 
+		// GET: Notes/Create
+		public IActionResult Create()
+		{
+			return View();
+		}
+
+		// POST: Notes/Create
+		// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+		[HttpPost]
+		[ValidateAntiForgeryToken]
+		public async Task<IActionResult> Create([Bind("ID,Title,Text,Importance,FinishDate")] Note note)
+		{
+			if (ModelState.IsValid)
+			{
+				_context.Add(note);
+				await _context.SaveChangesAsync();
+				return RedirectToAction(nameof(Index));
+			}
+			return View(note);
+		}
+
+
 		// GET: Notes/Edit/5
 		public async Task<IActionResult> Edit(int? id)
 		{
@@ -54,7 +77,7 @@ namespace notizenapp.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Text,Importance,FinishDate")] Note note)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Text,Importance,FinishDate,Finished")] Note note)
 		{
 			if (id != note.ID)
 			{

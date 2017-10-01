@@ -25,13 +25,14 @@ namespace notizenapp.Models
                         Title = "Important",
                         Text = "This is an important description",
                         Importance = 5,
-                        FinishDate = DateTime.Parse("2017-10-6")
+                        FinishDate = DateTime.Parse("2017-10-6"),
+                        Finished = true
                      },
 					new Note
 					{
 						Title = "Not Important",
 						Text = "This is a description",
-						Importance = 0,
+						Importance = 1,
 						FinishDate = DateTime.Parse("2017-11-9")
 					}
                     

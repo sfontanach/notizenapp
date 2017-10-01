@@ -5,7 +5,9 @@
 }
 
 Home page for notes.
-
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
@@ -15,11 +17,15 @@ Home page for notes.
             <th>
                 @Html.DisplayNameFor(model => model.notes[0].Text)
             </th>
+			<th>
+                @Html.DisplayNameFor(model => model.notes[0].Importance)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.notes[0].FinishDate)
             </th>
-
-            <th></th>
+			<th>
+                @Html.DisplayNameFor(model => model.notes[0].Finished)
+            </th>
         </tr>
     </thead>
     <tbody>
@@ -32,8 +38,14 @@ Home page for notes.
                 <td>
                     @Html.DisplayFor(modelItem => item.Text)
                 </td>
+			    <td>
+                    @Html.DisplayFor(modelItem => item.Importance)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+			    <td>
+                    @Html.DisplayFor(modelItem => item.Finished)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
