@@ -22,6 +22,7 @@ namespace notizenapp.Models
                 context.Note.AddRange(
                      new Note
                      {  
+                        CreatedDate = DateTime.Parse("2017-1-6"),
                         Title = "Important",
                         Text = "This is an important description",
                         Importance = 5,
@@ -30,6 +31,7 @@ namespace notizenapp.Models
                      },
 					new Note
 					{
+                        CreatedDate = DateTime.Parse("2017-1-9"), 
 						Title = "Not Important",
 						Text = "This is a description",
 						Importance = 1,

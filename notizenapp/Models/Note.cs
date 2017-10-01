@@ -11,6 +11,11 @@ namespace notizenapp.Models
         public int ID { get; set;}
 
         [Required]
+        [Display(Name = "Created Date")]
+        [DataType(DataType.Date)]
+        public DateTime? CreatedDate { get; set; }
+
+        [Required]
         [MinLength(5)]
         [MaxLength(50)]
         public string Title { get; set;}

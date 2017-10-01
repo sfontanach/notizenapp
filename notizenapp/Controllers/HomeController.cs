@@ -19,12 +19,25 @@ namespace notizenapp.Controllers
 			_context = context;
 		}
 
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string sortOrder)
         {
+            ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "finish_desc" : "";
 
             var notes = from n in _context.Note
                         select n;
 
+            switch (sortOrder) 
+            {
+                case "finish_desc":
+                    notes = notes.OrderByDescending(n => n.FinishDate);
+                    break;
+				case "created_desc":
+					notes = notes.OrderByDescending(n => n.CreatedDate);
+					break;
+				case "importance_desc":
+                    notes = notes.OrderByDescending(n => n.Importance);
+					break;
+            }
 
             var notesVM = new NoteViewModel();
 			notesVM.notes = await notes.ToListAsync();
@@ -44,10 +57,11 @@ namespace notizenapp.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("ID,Title,Text,Importance,FinishDate")] Note note)
+		public async Task<IActionResult> Create([Bind("ID,CreatedDate,Title,Text,Importance,FinishDate")] Note note)
 		{
 			if (ModelState.IsValid)
 			{
+                note.CreatedDate = DateTime.Now;
 				_context.Add(note);
 				await _context.SaveChangesAsync();
 				return RedirectToAction(nameof(Index));
@@ -77,7 +91,7 @@ namespace notizenapp.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,Title,Text,Importance,FinishDate,Finished")] Note note)
+        public async Task<IActionResult> Edit(int id, [Bind("ID,CreatedDate,Title,Text,Importance,FinishDate,Finished")] Note note)
 		{
 			if (id != note.ID)
 			{
@@ -107,6 +121,10 @@ namespace notizenapp.Controllers
 			return View(note);
 		}
 
+
+        /**
+         * Helper method to check whether a note exists.
+         */
 		private bool NoteExists(int id)
 		{
 			return _context.Note.Any(e => e.ID == id);
