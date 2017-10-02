@@ -19,7 +19,7 @@ namespace notizenapp.Controllers
 			_context = context;
 		}
 
-        public async Task<IActionResult> Index(string sortOrder)
+        public IActionResult Index(string sortOrder)
         {
             ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "finish_desc" : "";
 
@@ -40,7 +40,7 @@ namespace notizenapp.Controllers
             }
 
             var notesVM = new NoteViewModel();
-			notesVM.notes = await notes.ToListAsync();
+            notesVM.notes = notes.ToList();
 
 			return View(notesVM);
         }
@@ -57,28 +57,37 @@ namespace notizenapp.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-		public async Task<IActionResult> Create([Bind("ID,CreatedDate,Title,Text,Importance,FinishDate")] Note note)
+		public IActionResult Create(NewNoteViewModel newNote)
 		{
-			if (ModelState.IsValid)
-			{
-                note.CreatedDate = DateTime.Now;
-				_context.Add(note);
-				await _context.SaveChangesAsync();
-				return RedirectToAction(nameof(Index));
-			}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            Note note = new Note
+            {
+                Title = newNote.Title,
+                Text = newNote.Text,
+                Importance = newNote.Importance,
+                FinishDate = newNote.FinishDate
+            };
+
+            note.CreatedDate = DateTime.Now;
+			_context.Add(note);
+			_context.SaveChanges();
+			
 			return View(note);
 		}
 
 
 		// GET: Notes/Edit/5
-		public async Task<IActionResult> Edit(int? id)
+		public IActionResult Edit(int? id)
 		{
 			if (id == null)
 			{
 				return NotFound();
 			}
 
-            var note = await _context.Note.SingleOrDefaultAsync(m => m.ID == id);
+            var note = _context.Note.SingleOrDefault(m => m.ID == id);
 			if (note == null)
 			{
 				return NotFound();
@@ -91,33 +100,33 @@ namespace notizenapp.Controllers
 		// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
 		[HttpPost]
 		[ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ID,CreatedDate,Title,Text,Importance,FinishDate,Finished")] Note note)
+        public IActionResult Edit(int id, [Bind("ID,CreatedDate,Title,Text,Importance,FinishDate,Finished")] Note note)
 		{
 			if (id != note.ID)
 			{
 				return NotFound();
 			}
 
-			if (ModelState.IsValid)
-			{
-				try
-				{
-					_context.Update(note);
-					await _context.SaveChangesAsync();
-				}
-				catch (DbUpdateConcurrencyException)
-				{
-					if (!NoteExists(note.ID))
-					{
-						return NotFound();
-					}
-					else
-					{
-						throw;
-					}
-				}
-				return RedirectToAction(nameof(Index));
-			}
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(note);
+                    _context.SaveChanges();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!NoteExists(note.ID))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
 			return View(note);
 		}
 
