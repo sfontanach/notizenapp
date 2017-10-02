@@ -3,15 +3,45 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+<style>
+ [class*="col-"] {
+    background-color:lightblue;
+	background-
+	}
+</style>
 
-<p>
-    <a class="btn btn-primary" asp-action="Create">Create New</a>
-</p>
-<p>
-    <a class="btn btn-primary" asp-action="Index" asp-route-sortOrder="finish_desc">By Finish Date</a>
-	<a class="btn btn-primary" asp-action="Index" asp-route-sortOrder="created_desc">By Created Date</a>
-    <a class="btn btn-primary" asp-action="Index" asp-route-sortOrder="importance_desc">By Importance</a>
-</p>
+<div class="container">
+    <div class="row">
+      <div class="col-xs-6 col-md-6"><a class="btn btn-primary" asp-action="Create">Create New</a></div>
+      <div class="col-xs-6 col-md-6"><a class="btn btn-primary pull-right" asp-action="Create">Test New</a></div>
+    </div>
+</div>
+
+<div class="row">
+  <a class="btn btn-primary col-md-2 col-xs-12" asp-action="Index" asp-route-sortOrder="finish_desc">By Finish Date</a>
+  <a class="btn btn-primary col-md-2 col-xs-12" asp-action="Index" asp-route-sortOrder="created_desc">By Created Date</a>
+  <a class="btn btn-primary col-md-2 col-xs-12" asp-action="Index" asp-route-sortOrder="importance_desc">By Importance</a>
+  <a class="btn btn-primary col-md-3 col-xs-12 pull-right" asp-action="Index" asp-route-sortOrder="importance_desc">Hide Finished</a>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+      <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
+      <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+      <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+      <!-- Optional: clear the XS cols if their content doesn't match in height -->
+      <div class="clearfix visible-xs-block"></div>
+      <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+    </div>
+</div>
+
+
+
 <table class="table">
     <thead>
         <tr>
