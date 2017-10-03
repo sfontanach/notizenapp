@@ -4,6 +4,15 @@
     ViewData["Title"] = "Home Page";
 }
 
+<style>
+
+ .note {
+    border-style: dashed;
+	border-width: 1px;
+	padding-bottom: 6px;
+	margin-bottom: 20px;
+ }
+</style>
 
 <div class="container">
     <div class="row">
@@ -19,57 +28,24 @@
     </div>
 </div>
 
+<br><br>
+ @foreach (var item in Model.notes)
+{
+<div class="container note">
+    <div class="row">
+        <span class="col-md-1 col-xs-2">@Html.DisplayFor(modelItem => item.FinishDate)</span>
+		<span class="col-md-8 col-xs-8">
+		    <span>@Html.DisplayFor(modelItem => item.Title)</span>
+			<span class="pull-right">@Html.DisplayFor(modelItem => item.Importance)</span>
+		</span>
+       
+	</div>
+    <div class="row">
+        <span class="col-md-1 col-xs-2">@Html.DisplayFor(modelItem => item.Finished)</span>
+        <textarea disabled="true" class="col-md-8 col-xs-8">@Html.DisplayFor(modelItem => item.Text)</textarea>
+        <button asp-action="Edit"  class="btn btn-primary col-md-3 col-xs-3" asp-route-id="@item.ID">Edit</button>
+    </div>
+ </div>
+}
 
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.notes[0].Title)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.notes[0].Text)
-            </th>
-			<th>
-                @Html.DisplayNameFor(model => model.notes[0].Importance)
-            </th>
-			<th>
-                @Html.DisplayNameFor(model => model.notes[0].CreatedDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.notes[0].FinishDate)
-            </th>
-			<th>
-                @Html.DisplayNameFor(model => model.notes[0].Finished)
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model.notes)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Title)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Text)
-                </td>
-			    <td>
-                    @Html.DisplayFor(modelItem => item.Importance)
-                </td>
-			    <td>
-                    @Html.DisplayFor(modelItem => item.CreatedDate)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.FinishDate)
-                </td>
-			    <td>
-                    @Html.DisplayFor(modelItem => item.Finished)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> 
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
