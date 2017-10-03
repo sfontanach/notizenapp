@@ -19,12 +19,14 @@ namespace notizenapp.Controllers
 			_context = context;
 		}
 
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, bool hideFinished=false)
         {
             ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "finish_desc" : "";
 
             var notes = from n in _context.Note
                         select n;
+            ViewBag.HideSetting = hideFinished;
+
 
             switch (sortOrder) 
             {
@@ -37,6 +39,10 @@ namespace notizenapp.Controllers
 				case "importance_desc":
                     notes = notes.OrderByDescending(n => n.Importance);
 					break;
+            }
+
+            if (hideFinished) {
+                notes = notes.Where(n => n.Finished == false);
             }
 
             var notesVM = new NoteViewModel();

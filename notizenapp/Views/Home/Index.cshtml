@@ -5,31 +5,36 @@
 }
 
 <style>
-
- .note {
+   .note {
     border-style: dashed;
-	border-width: 1px;
-	padding-bottom: 6px;
-	margin-bottom: 20px;
- }
+    border-width: 1px;
+    padding-bottom: 6px;
+    margin-bottom: 20px;
+   }
 </style>
 
 <div class="container">
     <div class="row">
       <a class="btn btn-primary col-xs-4 col-md-2" asp-action="Create">Create New</a>
-      <a class="btn btn-primary col-xs-4 col-md-2 pull-right" asp-action="Create">Test New</a>
+      <a class="btn btn-primary col-xs-4 col-md-2 pull-right" asp-action="Create">Change Style</a>
     </div>
-
+   
     <div class="row">
       <a class="btn btn-primary col-md-2 col-xs-12" asp-action="Index" asp-route-sortOrder="finish_desc">By Finish Date</a>
       <a class="btn btn-primary col-md-2 col-xs-12" asp-action="Index" asp-route-sortOrder="created_desc">By Created Date</a>
       <a class="btn btn-primary col-md-2 col-xs-12" asp-action="Index" asp-route-sortOrder="importance_desc">By Importance</a>
-      <a class="btn btn-primary col-md-2 col-xs-12 pull-right" asp-action="Index" asp-route-sortOrder="importance_desc">Hide Finished</a>
+      @if ((bool)ViewData["HideSetting"])
+      {
+        <a class="btn btn-primary col-md-2 col-xs-12 pull-right" asp-action="Index" asp-route-hideFinished="false">Show Finished</a>
+      }else {
+        <a class="btn btn-primary col-md-2 col-xs-12 pull-right" asp-action="Index" asp-route-hideFinished="true">Hide Finished</a>
+      }
+
     </div>
 </div>
 
 <br><br>
- @foreach (var item in Model.notes)
+@foreach (var item in Model.notes)
 {
 <div class="container note">
     <div class="row">
