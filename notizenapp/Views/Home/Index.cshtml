@@ -41,9 +41,16 @@
         <span class="col-md-1 col-xs-2">@Html.DisplayFor(modelItem => item.FinishDate)</span>
 		<span class="col-md-8 col-xs-8">
 		    <span>@Html.DisplayFor(modelItem => item.Title)</span>
-			<span class="pull-right">@Html.DisplayFor(modelItem => item.Importance)</span>
+            <span class="rating pull-right">
+			@for (int i=5; i>0; i--) {
+				var check=item.Importance == i;
+				var strid = "rating-input-1-"+i;
+                var itemstarname = item.ID;
+                <input type="radio" class="rating-input" id="@strid" name="@itemstarname" checked="@check">
+                <label for="@strid" class="rating-star"></label>
+            }		
+            </span>
 		</span>
-       
 	</div>
     <div class="row">
         <span class="col-md-1 col-xs-2">@Html.DisplayFor(modelItem => item.Finished)</span>
