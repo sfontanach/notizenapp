@@ -17,4 +17,10 @@
     <Content Remove="Views\Home\About.cshtml" />
     <Content Remove="Views\Home\Contact.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="TagHelpers\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="TagHelpers\StarRatingTaghelper.css" />
+  </ItemGroup>
 </Project>
