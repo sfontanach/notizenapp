@@ -23,9 +23,7 @@
                 <span asp-validation-for="Text" class="text-danger"></span>
             </div>
 			<div class="form-group">
-                <label asp-for="Importance" class="control-label"></label>
-                <input asp-for="Importance" class="form-control" />
-                <span asp-validation-for="Importance" class="text-danger"></span>
+                <starrating asp-for="Importance" inputname="Importance" itemid="Importance"></starrating>
             </div>
             <div class="form-group">
                 <label asp-for="FinishDate" class="control-label"></label>

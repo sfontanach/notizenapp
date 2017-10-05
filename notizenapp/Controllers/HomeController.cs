@@ -98,6 +98,7 @@ namespace notizenapp.Controllers
 			{
 				return NotFound();
 			}
+            ViewBag.Importance = note.Importance;
 			return View(note);
 		}
 
