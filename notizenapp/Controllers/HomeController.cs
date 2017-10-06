@@ -81,7 +81,7 @@ namespace notizenapp.Controllers
 			_context.Add(note);
 			_context.SaveChanges();
 			
-			return View(note);
+			return RedirectToAction(nameof(Index));
 		}
 
 

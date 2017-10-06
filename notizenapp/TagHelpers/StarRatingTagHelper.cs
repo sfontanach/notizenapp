@@ -24,16 +24,13 @@ namespace notizenapp.TagHelpers
             string htmlContent = "";
             for (int i = 5; i > 0; i--)
             {
-
                 string star;
                 string strid = $"rating-input-1-{i}";
                 string itemstarname = $"{Itemid}";
                 string checkedString = (i.ToString() == Rating) ? "checked='checked'" : "";
                 string disabledString = disablecheck == "true" ? "disabled" : "";
-                Console.WriteLine(Rating);
-                Console.WriteLine(checkedString);
                 string codeString = $@"document.getElementById(""{Inputname}"").value = {i};";
-                    star = $@"
+                star = $@"
                     <input {disabledString}  onclick='{codeString}' type='radio' class='rating-input' 
                             id='{strid}' name='{itemstarname}' {checkedString}>
                     <label for='{strid}' class='rating-star'></label>";
