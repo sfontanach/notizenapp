@@ -33,5 +33,29 @@ namespace notizenapp.Test
 
 			Assert.Equal((int)HttpStatusCode.NotFound, result.StatusCode);
         }
+
+
+        [Fact]
+        public async void TestCreateAsync()
+        {
+            int initialCount = (int)await _dbContext.Note.CountAsync();
+
+            NewNoteViewModel testNote = new NewNoteViewModel
+            {
+                Title = "title",
+                Text = "text",
+                Importance = 1,
+                FinishDate = DateTime.Now,
+                Finished = false
+            };
+            var controller = new HomeController(_dbContext);
+            var result = controller.Create(testNote) as IActionResult;
+
+            var okResult = Assert.IsType<RedirectToActionResult>(result);
+            var res = await _dbContext.Note.CountAsync();
+            Assert.Equal((int) res, initialCount + 1);
+
+        }
+
     }
 }

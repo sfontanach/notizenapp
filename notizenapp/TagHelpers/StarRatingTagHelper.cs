@@ -7,7 +7,12 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace notizenapp.TagHelpers
 {
-    // You may need to install the Microsoft.AspNetCore.Razor.Runtime package into your project
+
+    /**
+     * Tag helper for star rating.
+     * In the future it may be extended to support the number of stars as an 
+     * attribute of the tag.
+     */
     [HtmlTargetElement("starrating")]
     public class StarRatingTagHelper : TagHelper
     {
